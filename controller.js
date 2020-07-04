@@ -15,15 +15,42 @@ export default class Controller {
     window.alert("Cadastrado com Sucesso");
     //Atualizando lista na tela
     this.exibirLista();
+    //Limpar tudo
+    this.limparForm();
   }
 
-  aoClicarNoExcluir() {
+  limparForm() {
+    document.getElementById("nomeFruta").value = "";
+    document.getElementById("idFruta").value = "";
+    document.getElementById("textoBusca").value = "";
+  }
+  aoClicarNoBotaoExcluir() {
     //1 Ler ID da tela
     let idFruta = document.getElementById("idFruta").value;
     //2 Invocar metodo de exclusao
     this.sacolao.excluir(idFruta);
     //3 mensagem
     window.alert("Excluído com sucesso");
+    //Atualizar lista
+    this.exibirLista();
+    //Limpar tudo
+    this.limparForm();
+  }
+
+  aoClicarNoIconeExcluir(idFruta) {
+    if (confirm("Tem certeza que deseja excluir? ")) {
+      //1 Invocar metodo de exclusao
+      this.sacolao.excluir(idFruta);
+
+      //2 Atualizar lista
+      this.exibirLista();
+
+      //3 mensagem
+      window.alert("Excluído com sucesso");
+
+      //4 Limpar tudo
+      this.limparForm();
+    }
   }
 
   aoClicarBuscar() {
@@ -46,6 +73,9 @@ export default class Controller {
     } else {
       this.exibirResultado("Digite um texto!");
     }
+
+    //Limpar tudo
+    this.limparForm();
   }
 
   exibirLista() {
@@ -55,7 +85,10 @@ export default class Controller {
     //Montar HTML das frutas
     let div = "";
     for (let i = 0; i < arrFrutas.length; i++) {
-      div += `<div>  ${arrFrutas[i].nome} </div>`;
+      div += `<div>
+                ${arrFrutas[i].id}  |  ${arrFrutas[i].nome} 
+                <img width="10" src="icons/trash.png" onclick="controller.aoClicarNoIconeExcluir(${arrFrutas[i].id})">
+            </div>`;
     }
 
     //Exibir
