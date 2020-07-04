@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sacolão</title>
+    <script type="module">
+      import Controller from "./controller.js";
+      window.controller = new Controller();
+    </script>
+  </head>
+  <body>
+    <div>
+      <!-- Form do Filtro-->
+      <input type="text" id="textoBusca" />
+      <select id="filtro">
+        <option value="">.:Selecione o Campo:. </option>
+        <option value="id"> ID </option>
+        <option value="nome"> Nome </option>
+      </select>
+      <button onclick="controller.aoClicarBuscar()">Buscar</button>
+    </div>
+    <div>
+      <!-- Form do Cadastro-->
+    </div>
+
+    <div id="resultado"></div>
+    <div id="listaFrutas"></div>
+  </body>
+</html>
