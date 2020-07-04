@@ -13,6 +13,8 @@ export default class Controller {
     this.sacolao.cadastrar(fruta);
     //4) Exibe mensagem na tela
     window.alert("Cadastrado com Sucesso");
+    //Atualizando lista na tela
+    this.exibirLista();
   }
 
   aoClicarNoExcluir() {
@@ -22,6 +24,42 @@ export default class Controller {
     this.sacolao.excluir(idFruta);
     //3 mensagem
     window.alert("Excluído com sucesso");
+  }
+
+  aoClicarBuscar() {
+    //Leitura da tela
+
+    let textoBusca = document.getElementById("textoBusca").value;
+    let filtro = document.getElementById("filtro").value;
+
+    //Decide se chama buscarPorId ou buscarPorNome
+    if (textoBusca != "") {
+      if (filtro != "") {
+        if (filtro == "id") {
+          this.buscarPorId(textoBusca);
+        } else {
+          this.buscarPorNome(textoBusca);
+        }
+      } else {
+        this.exibirResultado("Selecione uma opção de filtro!");
+      }
+    } else {
+      this.exibirResultado("Digite um texto!");
+    }
+  }
+
+  exibirLista() {
+    //buscar todos as frutas para exibir
+    let arrFrutas = this.sacolao.buscarTodos();
+
+    //Montar HTML das frutas
+    let div = "";
+    for (let i = 0; i < arrFrutas.length; i++) {
+      div += `<div>  ${arrFrutas[i].nome} </div>`;
+    }
+
+    //Exibir
+    this.exibirResultado(div);
   }
 
   buscarPorId(id) {
@@ -48,27 +86,5 @@ export default class Controller {
   exibirResultado(conteudo) {
     let divResultado = document.getElementById("resultado");
     divResultado.innerHTML = conteudo;
-  }
-
-  aoClicarBuscar() {
-    //Leitura da tela
-
-    let textoBusca = document.getElementById("textoBusca").value;
-    let filtro = document.getElementById("filtro").value;
-
-    //Decide se chama buscarPorId ou buscarPorNome
-    if (textoBusca != "") {
-      if (filtro != "") {
-        if (filtro == "id") {
-          this.buscarPorId(textoBusca);
-        } else {
-          this.buscarPorNome(textoBusca);
-        }
-      } else {
-        this.exibirResultado("Selecione uma opção de filtro!");
-      }
-    } else {
-      this.exibirResultado("Digite um texto!");
-    }
   }
 }

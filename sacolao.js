@@ -29,6 +29,7 @@ export default class Sacolao {
   }
   buscarTodos() {
     //retorna o array
+    return this.arrFrutas;
   }
 
   buscarFrutaPorId(id) {
