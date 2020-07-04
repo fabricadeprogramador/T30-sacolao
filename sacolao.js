@@ -12,8 +12,21 @@ export default class Sacolao {
 
   excluir(id) {
     //excluir a fruta pelo encontrado
+    let indice = this.buscarIndicePorId(id);
+    this.arrFrutas.splice(indice, 1);
   }
 
+  buscarIndicePorId(idFruta) {
+    //faz uma busca
+    for (let i = 0; i < this.arrFrutas.length; i++) {
+      if (this.arrFrutas[i].id == idFruta) {
+        //retorna um indice
+        return i;
+      }
+    }
+
+    return -1;
+  }
   buscarTodos() {
     //retorna o array
   }
@@ -28,9 +41,9 @@ export default class Sacolao {
     return null;
   }
 
-  buscarIndiceFruta(fruta) {
+  buscarIndiceFruta(nomeFruta) {
     for (let i = 0; i < this.arrFrutas.length; i++) {
-      if (this.arrFrutas[i].nome.toUpperCase() == fruta.toUpperCase()) {
+      if (this.arrFrutas[i].nome.toUpperCase() == nomeFruta.toUpperCase()) {
         return i;
       }
     }

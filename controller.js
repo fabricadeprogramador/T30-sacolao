@@ -15,6 +15,15 @@ export default class Controller {
     window.alert("Cadastrado com Sucesso");
   }
 
+  aoClicarNoExcluir() {
+    //1 Ler ID da tela
+    let idFruta = document.getElementById("idFruta").value;
+    //2 Invocar metodo de exclusao
+    this.sacolao.excluir(idFruta);
+    //3 mensagem
+    window.alert("Excluído com sucesso");
+  }
+
   buscarPorId(id) {
     let fruta = this.sacolao.buscarFrutaPorId(id);
 
