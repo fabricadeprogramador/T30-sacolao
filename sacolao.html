@@ -11,20 +11,26 @@
   </head>
   <body>
     <div>
-      <!-- Form do Filtro-->
-      <input type="text" id="textoBusca" />
-      <select id="filtro">
-        <option value="">.:Selecione o Campo:. </option>
-        <option value="id"> ID </option>
-        <option value="nome"> Nome </option>
-      </select>
-      <button onclick="controller.aoClicarBuscar()">Buscar</button>
-    </div>
-    <div>
-      <!-- Form do Cadastro-->
-    </div>
+      <div>
+        <!-- Form do Cadastro-->
 
-    <div id="resultado"></div>
-    <div id="listaFrutas"></div>
+        <input type="text" id="nomeFruta" placeholder="Nome da Fruta" />
+        <button onclick="controller.aoClicarCadastrar()">Cadastrar</button>
+      </div>
+
+      <div>
+        <!-- Form do Filtro-->
+        <input type="text" id="textoBusca" placeholder="Busca" />
+        <select id="filtro">
+          <option value="">.:Selecione o Campo:. </option>
+          <option value="id"> ID </option>
+          <option value="nome"> Nome </option>
+        </select>
+        <button onclick="controller.aoClicarBuscar()">Buscar</button>
+      </div>
+
+      <div id="resultado"></div>
+      <div id="listaFrutas"></div>
+    </div>
   </body>
 </html>

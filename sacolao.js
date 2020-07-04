@@ -1,19 +1,16 @@
 export default class Sacolao {
   constructor() {
-    this.arrFrutas = [
-      { id: 10, nome: "Maçã" },
-      { id: 20, nome: "Pera" },
-      { id: 30, nome: "Melancia" },
-      { id: 40, nome: "Uva" },
-    ];
+    this.arrFrutas = [];
+    this.sequenciaID = 1;
   }
 
   cadastrar(fruta) {
-    //Recebe uma fruta e coloca no array
-    //Contador para gerar o ID
+    fruta.id = this.sequenciaID;
+    this.arrFrutas.push(fruta);
+    this.sequenciaID++;
   }
 
-  excluirPorId(id) {
+  excluir(id) {
     //excluir a fruta pelo encontrado
   }
 

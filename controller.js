@@ -3,6 +3,18 @@ export default class Controller {
   constructor() {
     this.sacolao = new Sacolao();
   }
+
+  aoClicarCadastrar() {
+    //1) Ler um form da tela
+    let nomeFruta = document.getElementById("nomeFruta").value;
+    //2) Montar um objeto JS
+    let fruta = { nome: nomeFruta };
+    //3) Invocar o método cadastrar do sacolão
+    this.sacolao.cadastrar(fruta);
+    //4) Exibe mensagem na tela
+    window.alert("Cadastrado com Sucesso");
+  }
+
   buscarPorId(id) {
     let fruta = this.sacolao.buscarFrutaPorId(id);
 
@@ -49,12 +61,5 @@ export default class Controller {
     } else {
       this.exibirResultado("Digite um texto!");
     }
-  }
-
-  aoClicarCadastrar() {
-    //Pega os dados da fruta
-    //manda pro sacolao cadastrar
-    //Exibe mensagem de sucesso
-    //Carrega na tela a lista de frutas atualizada
   }
 }
