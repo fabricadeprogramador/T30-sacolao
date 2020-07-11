@@ -4,10 +4,19 @@ export default class Sacolao {
     this.sequenciaID = 1;
   }
 
-  cadastrar(fruta) {
-    fruta.id = this.sequenciaID;
-    this.arrFrutas.push(fruta);
-    this.sequenciaID++;
+  salvar(fruta) {
+    //alterar
+    if (fruta.id != undefined) {
+      let indice = this.buscarIndicePorId(fruta.id);
+      if (indice != -1) {
+        this.arrFrutas[indice] = fruta;
+      }
+    } else {
+      //cadastro
+      fruta.id = this.sequenciaID;
+      this.arrFrutas.push(fruta);
+      this.sequenciaID++;
+    }
   }
 
   excluir(id) {
