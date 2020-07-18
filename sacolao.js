@@ -68,7 +68,12 @@ export default class Sacolao {
   }
 
   buscaFrutasPorNome(busca) {
-    //array contendo  as frutas com as palavras da busca
-    //return um array
+    let filtro = this.arrFrutas.filter(function (f) {
+      if (f.nome.toUpperCase() == busca.toUpperCase()) {
+        return f;
+      }
+    });
+
+    return filtro;
   }
 }

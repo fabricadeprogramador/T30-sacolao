@@ -23,7 +23,8 @@ export default class Controller {
         this.exibirResultado("Selecione uma opção de filtro!");
       }
     } else {
-      this.exibirResultado("Digite um texto!");
+      //this.exibirResultado("Digite um texto!");
+      this.buscarTodos();
     }
 
     //Limpar tudo
@@ -43,7 +44,7 @@ export default class Controller {
     //4) Exibe mensagem na tela
     window.alert("Cadastrado com Sucesso");
     //Atualizando lista na tela
-    this.exibirLista();
+    this.buscarTodos();
     //Limpar tudo
     this.limparForm();
 
@@ -59,7 +60,7 @@ export default class Controller {
     //3 mensagem
     window.alert("Excluído com sucesso");
     //Atualizar lista
-    this.exibirLista();
+    this.buscarTodos();
     //Limpar tudo
     this.limparForm();
   }
@@ -70,7 +71,7 @@ export default class Controller {
       this.sacolao.excluir(idFruta);
 
       //2 Atualizar lista
-      this.exibirLista();
+      this.buscarTodos();
 
       //3 mensagem
       window.alert("Excluído com sucesso");
@@ -113,18 +114,19 @@ export default class Controller {
     }
   }
 
-  // buscarPorNome(nome) {
-  //   let indice = this.sacolao.buscarIndiceFruta(nome);
-  //   if (indice != -1) {
-  //     this.exibirResultado("Encontrado na posição:" + indice);
-  //   } else {
-  //     this.exibirResultado("Não encontrado!");
-  //   }
-  // }
-
   buscarPorNome(nome) {
     //buscar todos as frutas para exibir
     let arrFrutas = this.sacolao.buscaFrutasPorNome(nome);
+    this.exibirLista(arrFrutas);
+  }
+
+  buscarTodos() {
+    //buscar todos as frutas para exibir
+    let arrFrutas = this.sacolao.buscarTodos();
+    this.exibirLista(arrFrutas);
+  }
+
+  exibirLista(arrFrutas) {
     if (arrFrutas.length == 0) {
       this.exibirResultado("Não encontrado!");
     } else {
@@ -132,33 +134,15 @@ export default class Controller {
       let div = "";
       for (let i = 0; i < arrFrutas.length; i++) {
         div += `<div>
-             ${arrFrutas[i].id}  |  ${arrFrutas[i].nome} 
-             <img width="10" src="icons/trash.png" onclick="controller.aoClicarNoIconeExcluir(${arrFrutas[i].id})">
-             <img width="10" src="icons/editar.png" onclick="controller.aoClicarNoIconeEditar(${arrFrutas[i].id})">
-             </div>`;
+               ${arrFrutas[i].id}  |  ${arrFrutas[i].nome} 
+               <img width="10" src="icons/trash.png" onclick="controller.aoClicarNoIconeExcluir(${arrFrutas[i].id})">
+               <img width="10" src="icons/editar.png" onclick="controller.aoClicarNoIconeEditar(${arrFrutas[i].id})">
+               </div>`;
       }
 
       //Exibir
       this.exibirResultado(div);
     }
-  }
-
-  exibirLista() {
-    //buscar todos as frutas para exibir
-    let arrFrutas = this.sacolao.buscarTodos();
-
-    //Montar HTML das frutas
-    let div = "";
-    for (let i = 0; i < arrFrutas.length; i++) {
-      div += `<div>
-                ${arrFrutas[i].id}  |  ${arrFrutas[i].nome} 
-                <img width="10" src="icons/trash.png" onclick="controller.aoClicarNoIconeExcluir(${arrFrutas[i].id})">
-                <img width="10" src="icons/editar.png" onclick="controller.aoClicarNoIconeEditar(${arrFrutas[i].id})">
-                </div>`;
-    }
-
-    //Exibir
-    this.exibirResultado(div);
   }
 
   exibirResultado(conteudo) {
