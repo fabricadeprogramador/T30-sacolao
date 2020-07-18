@@ -51,13 +51,24 @@ export default class Sacolao {
     return null;
   }
 
-  buscarIndiceFruta(nomeFruta) {
-    for (let i = 0; i < this.arrFrutas.length; i++) {
-      if (this.arrFrutas[i].nome.toUpperCase() == nomeFruta.toUpperCase()) {
-        return i;
-      }
-    }
+  // buscarIndiceFruta(nomeFruta) {
+  //   for (let i = 0; i < this.arrFrutas.length; i++) {
+  //     if (this.arrFrutas[i].nome.toUpperCase() == nomeFruta.toUpperCase()) {
+  //       return i;
+  //     }
+  //   }
 
-    return -1;
+  //   return -1;
+  // }
+
+  buscarIndiceFruta(nomeFruta) {
+    return this.arrFrutas.findIndex(function (f) {
+      return f.nome.toUpperCase() == nomeFruta.toUpperCase();
+    });
+  }
+
+  buscaFrutasPorNome(busca) {
+    //array contendo  as frutas com as palavras da busca
+    //return um array
   }
 }

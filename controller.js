@@ -113,12 +113,33 @@ export default class Controller {
     }
   }
 
+  // buscarPorNome(nome) {
+  //   let indice = this.sacolao.buscarIndiceFruta(nome);
+  //   if (indice != -1) {
+  //     this.exibirResultado("Encontrado na posição:" + indice);
+  //   } else {
+  //     this.exibirResultado("Não encontrado!");
+  //   }
+  // }
+
   buscarPorNome(nome) {
-    let indice = this.sacolao.buscarIndiceFruta(nome);
-    if (indice != -1) {
-      this.exibirResultado("Encontrado na posição:" + indice);
-    } else {
+    //buscar todos as frutas para exibir
+    let arrFrutas = this.sacolao.buscaFrutasPorNome(nome);
+    if (arrFrutas.length == 0) {
       this.exibirResultado("Não encontrado!");
+    } else {
+      //Montar HTML das frutas
+      let div = "";
+      for (let i = 0; i < arrFrutas.length; i++) {
+        div += `<div>
+             ${arrFrutas[i].id}  |  ${arrFrutas[i].nome} 
+             <img width="10" src="icons/trash.png" onclick="controller.aoClicarNoIconeExcluir(${arrFrutas[i].id})">
+             <img width="10" src="icons/editar.png" onclick="controller.aoClicarNoIconeEditar(${arrFrutas[i].id})">
+             </div>`;
+      }
+
+      //Exibir
+      this.exibirResultado(div);
     }
   }
 
