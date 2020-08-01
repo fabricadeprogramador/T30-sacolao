@@ -131,13 +131,19 @@ export default class Controller {
       this.exibirResultado("Não encontrado!");
     } else {
       //Montar HTML das frutas
-      let div = "";
+      let div = `<li class="list-group-item active">Frutas</li>`;
       for (let i = 0; i < arrFrutas.length; i++) {
-        div += `<div>
-               ${arrFrutas[i].id}  |  ${arrFrutas[i].nome} 
-               <img width="10" src="icons/trash.png" onclick="controller.aoClicarNoIconeExcluir(${arrFrutas[i].id})">
-               <img width="10" src="icons/editar.png" onclick="controller.aoClicarNoIconeEditar(${arrFrutas[i].id})">
-               </div>`;
+        div += `<li class="list-group-item ">
+                  <div class="row">
+                    <div class="col-1"> ${arrFrutas[i].id} </div> 
+                    <div class="col"> ${arrFrutas[i].nome} </div>
+                    <div class="col-1" >
+                        <img  src="icons/trash.png" onclick="controller.aoClicarNoIconeExcluir(${arrFrutas[i].id})"> </div>
+                        <img  src="icons/editar.png" onclick="controller.aoClicarNoIconeEditar(${arrFrutas[i].id})">
+                    </div>
+                  </div>
+
+               </li>`;
       }
 
       //Exibir
